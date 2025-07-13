@@ -1,103 +1,490 @@
-import Image from "next/image";
+// /* eslint-disable @typescript-eslint/no-unused-vars */
+// "use client";
 
-export default function Home() {
+// import { useState } from "react";
+// import { Code, Github, Star } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import { CodingQuestion, FilterCriteria } from "@/types";
+// import { QuestionService } from "@/services/questionService";
+// import { ThemeToggle } from "@/components/ThemeToggle";
+// import { QuestionFilters } from "@/components/QuestionFilters";
+// import { StatsOverview } from "@/components/StatsOverview";
+// import { LoadingSkeleton } from "@/components/LoadingSkeleton";
+// import { ErrorMessage } from "@/components/ErrorMessage";
+// import { EmptyState } from "@/components/EmptyState";
+// import { QuestionCard } from "@/components/QuestionCard";
+// import axios from "axios";
+
+// function App() {
+//   const [questions, setQuestions] = useState<CodingQuestion[]>([]);
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [error, setError] = useState<string | null>(null);
+//   const [lastCriteria, setLastCriteria] = useState<FilterCriteria | null>(null);
+//   const [hasSearched, setHasSearched] = useState(false);
+
+//   const handleFilterChange = async (criteria: FilterCriteria) => {
+//     setIsLoading(true);
+//     setError(null);
+//     setLastCriteria(criteria);
+//     setHasSearched(true);
+
+//     try {
+//       console.log("criteria", criteria);
+
+//       const inputData = {
+//         topic: criteria.topic,
+//         difficulty_level: criteria.difficulty,
+//         num_questions: criteria.count,
+//       };
+
+//       // const results = await QuestionService.fetchQuestions(criteria);
+//       const results = await axios.post("/api/questions", inputData);
+//       setQuestions(results.data);
+
+//       if (results.length === 0) {
+//         setError(
+//           `No questions found for ${criteria.topic.replace(
+//             "-",
+//             " "
+//           )} topic with ${criteria.difficulty} difficulty.`
+//         );
+//       }
+//     } catch (err) {
+//       setError("Failed to fetch questions. Please try again later.");
+//       setQuestions([]);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+
+//   const handleRetry = () => {
+//     if (lastCriteria) {
+//       handleFilterChange(lastCriteria);
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-background transition-colors">
+//       {/* Header */}
+//       <header className="border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/30">
+//         <div className="container mx-auto px-4 py-6">
+//           <div className="flex items-center justify-between">
+//             <div className="flex items-center gap-3">
+//               <div className="flex items-center justify-center w-10 h-10 bg-primary rounded-lg">
+//                 <Code className="w-6 h-6 text-primary-foreground" />
+//               </div>
+//               <div>
+//                 <h1 className="text-2xl font-bold text-foreground">
+//                   Coding Question Generator
+//                 </h1>
+//                 <p className="text-sm text-muted-foreground">
+//                   Discover coding problems from multiple platforms
+//                 </p>
+//               </div>
+//             </div>
+
+//             <div className="flex items-center gap-3">
+//               <ThemeToggle />
+//               <Button variant="outline" size="sm" className="hidden sm:flex">
+//                 <Star className="w-4 h-4 mr-2" />
+//                 Star on GitHub
+//               </Button>
+//               <Button variant="ghost" size="sm">
+//                 <Github className="w-4 h-4" />
+//               </Button>
+//             </div>
+//           </div>
+//         </div>
+//       </header>
+
+//       {/* Main Content */}
+//       <main className="container mx-auto px-4 py-8">
+//         <div className="space-y-8">
+//           {/* Filters */}
+//           <QuestionFilters
+//             onFilterChange={handleFilterChange}
+//             isLoading={isLoading}
+//           />
+
+//           {/* Results Section */}
+//           <div className="space-y-6">
+//             {/* Stats Overview */}
+//             <StatsOverview questions={questions} />
+
+//             {/* Loading State */}
+//             {isLoading && <LoadingSkeleton />}
+
+//             {/* Error State */}
+//             {error && !isLoading && (
+//               <ErrorMessage
+//                 message={error}
+//                 onRetry={lastCriteria ? handleRetry : undefined}
+//               />
+//             )}
+
+//             {/* Empty State - No Search */}
+//             {!hasSearched && !isLoading && <EmptyState type="no-search" />}
+
+//             {/* Empty State - No Results */}
+//             {hasSearched && questions.length === 0 && !isLoading && !error && (
+//               <EmptyState
+//                 type="no-results"
+//                 topic={lastCriteria?.topic}
+//                 difficulty={lastCriteria?.difficulty}
+//               />
+//             )}
+
+//             {/* Questions Grid */}
+//             {questions.length > 0 && !isLoading && (
+//               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+//                 {questions.map((question) => (
+//                   <QuestionCard key={question.id} question={question} />
+//                 ))}
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </main>
+
+//       {/* Footer */}
+//       <footer className="border-t mt-16">
+//         <div className="container mx-auto px-4 py-8">
+//           <div className="text-center text-sm text-muted-foreground">
+//             <p>
+//               Built with React, TypeScript, and Shadcn/ui • Data sourced from
+//               LeetCode, Codeforces, CodeChef, and GeeksforGeeks
+//             </p>
+//           </div>
+//         </div>
+//       </footer>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// "use client";
+
+// import { useState } from "react";
+// import { Code, Github, Star } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import { CodingQuestion, FilterCriteria } from "@/types";
+// import { ThemeToggle } from "@/components/ThemeToggle";
+// import { QuestionFilters } from "@/components/QuestionFilters";
+// import { StatsOverview } from "@/components/StatsOverview";
+// import { LoadingSkeleton } from "@/components/LoadingSkeleton";
+// import { ErrorMessage } from "@/components/ErrorMessage";
+// import { EmptyState } from "@/components/EmptyState";
+// import { QuestionCard } from "@/components/QuestionCard";
+// import axios from "axios";
+
+// function App() {
+//   const [questions, setQuestions] = useState<CodingQuestion[]>([]);
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [error, setError] = useState<string | null>(null);
+//   const [lastCriteria, setLastCriteria] = useState<FilterCriteria | null>(null);
+//   const [hasSearched, setHasSearched] = useState(false);
+
+//   const handleFilterChange = async (criteria: FilterCriteria) => {
+//     setIsLoading(true);
+//     setError(null);
+//     setLastCriteria(criteria);
+//     setHasSearched(true);
+
+//     try {
+//       const inputData = {
+//         topic: criteria.topic,
+//         difficulty_level: criteria.difficulty,
+//         num_questions: criteria.count,
+//       };
+
+//       const response = await axios.post("/api/questions", inputData);
+//       // const response = await axios.post<CodingQuestion[]>(
+//       //   "/api/questions",
+//       //   inputData
+//       // );
+//       const questionsData = response.data.data.coding_questions;
+//       console.log("questionsData", questionsData);
+
+//       setQuestions(questionsData);
+
+//       // if (questionsData.length === 0) {
+//       //   setError(
+//       //     `No questions found for ${criteria.topic.replace(
+//       //       "-",
+//       //       " "
+//       //     )} topic with ${criteria.difficulty} difficulty.`
+//       //   );
+//       // }
+//     } catch (err) {
+//       console.error(err);
+//       setError("Failed to fetch questions. Please try again later.");
+//       setQuestions([]);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+
+//   const handleRetry = () => {
+//     if (lastCriteria) {
+//       handleFilterChange(lastCriteria);
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-background transition-colors">
+//       {/* Header */}
+//       <header className="border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/30">
+//         <div className="container mx-auto px-4 py-6">
+//           <div className="flex items-center justify-between">
+//             <div className="flex items-center gap-3">
+//               <div className="flex items-center justify-center w-10 h-10 bg-primary rounded-lg">
+//                 <Code className="w-6 h-6 text-primary-foreground" />
+//               </div>
+//               <div>
+//                 <h1 className="text-2xl font-bold text-foreground">
+//                   Coding Question Generator
+//                 </h1>
+//                 <p className="text-sm text-muted-foreground">
+//                   Discover coding problems from multiple platforms
+//                 </p>
+//               </div>
+//             </div>
+
+//             <div className="flex items-center gap-3">
+//               <ThemeToggle />
+//               <Button variant="outline" size="sm" className="hidden sm:flex">
+//                 <Star className="w-4 h-4 mr-2" />
+//                 Star on GitHub
+//               </Button>
+//               <Button variant="ghost" size="sm">
+//                 <Github className="w-4 h-4" />
+//               </Button>
+//             </div>
+//           </div>
+//         </div>
+//       </header>
+
+//       {/* Main Content */}
+//       <main className="container mx-auto px-4 py-8">
+//         <div className="space-y-8">
+//           {/* Filters */}
+//           <QuestionFilters
+//             onFilterChange={handleFilterChange}
+//             isLoading={isLoading}
+//           />
+
+//           {/* Results Section */}
+//           <div className="space-y-6">
+//             {/* Stats Overview */}
+//             <StatsOverview questions={questions} />
+
+//             {/* Loading State */}
+//             {isLoading && <LoadingSkeleton />}
+
+//             {/* Error State */}
+//             {error && !isLoading && (
+//               <ErrorMessage
+//                 message={error}
+//                 onRetry={lastCriteria ? handleRetry : undefined}
+//               />
+//             )}
+
+//             {/* Empty State - No Search Yet */}
+//             {!hasSearched && !isLoading && <EmptyState type="no-search" />}
+
+//             {/* Empty State - No Results */}
+//             {hasSearched && questions.length === 0 && !isLoading && !error && (
+//               <EmptyState
+//                 type="no-results"
+//                 topic={lastCriteria?.topic}
+//                 difficulty={lastCriteria?.difficulty}
+//               />
+//             )}
+
+//             {/* Questions Grid */}
+//             {questions.length > 0 && !isLoading && (
+//               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+//                 {questions.map((question, index) => (
+//                   <QuestionCard key={index} question={question} />
+//                 ))}
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </main>
+
+//       {/* Footer */}
+//       <footer className="border-t mt-16">
+//         <div className="container mx-auto px-4 py-8">
+//           <div className="text-center text-sm text-muted-foreground">
+//             <p>
+//               Built with React, TypeScript, and Shadcn/ui • Data sourced from
+//               LeetCode, Codeforces, CodeChef, and GeeksforGeeks
+//             </p>
+//           </div>
+//         </div>
+//       </footer>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+"use client";
+
+import { useState } from "react";
+import { Code, Github, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { CodingQuestion, FilterCriteria } from "@/types";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { QuestionFilters } from "@/components/QuestionFilters";
+import { StatsOverview } from "@/components/StatsOverview";
+import { LoadingSkeleton } from "@/components/LoadingSkeleton";
+import { ErrorMessage } from "@/components/ErrorMessage";
+import { EmptyState } from "@/components/EmptyState";
+import { QuestionCard } from "@/components/QuestionCard";
+import axios from "axios";
+
+function App() {
+  const [questions, setQuestions] = useState<CodingQuestion[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [lastCriteria, setLastCriteria] = useState<FilterCriteria | null>(null);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [topic, setTopic] = useState();
+
+  const handleFilterChange = async (criteria: FilterCriteria) => {
+    setIsLoading(true);
+    setError(null);
+    setLastCriteria(criteria);
+    setHasSearched(true);
+
+    try {
+      const inputData = {
+        topic: criteria.topic,
+        difficulty_level: criteria.difficulty,
+        num_questions: criteria.count,
+      };
+
+      const response = await axios.post("/api/questions", inputData);
+      console.log("response in handleFilterChange", response);
+
+      const questionsData: CodingQuestion[] =
+        response.data.data.coding_questions;
+      const questionTopic = response.data.data.search_criteria.topic;
+      setTopic(questionTopic);
+
+      setQuestions(questionsData);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to fetch questions. Please try again later.");
+      setQuestions([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRetry = () => {
+    if (lastCriteria) {
+      handleFilterChange(lastCriteria);
+    }
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-background transition-colors">
+      {/* Header */}
+      <header className="border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/30">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-10 h-10 bg-primary rounded-lg">
+                <Code className="w-6 h-6 text-primary-foreground" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-foreground">
+                  Coding Question Generator
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                  Discover coding problems from multiple platforms
+                </p>
+              </div>
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <Button variant="outline" size="sm" className="hidden sm:flex">
+                <Star className="w-4 h-4 mr-2" />
+                Star on GitHub
+              </Button>
+              <Button variant="ghost" size="sm">
+                <Github className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-8">
+        <div className="space-y-8">
+          {/* Filters */}
+          <QuestionFilters
+            onFilterChange={handleFilterChange}
+            isLoading={isLoading}
+          />
+
+          {/* Results Section */}
+          <div className="space-y-6">
+            <StatsOverview questions={questions} />
+            {isLoading && <LoadingSkeleton />}
+
+            {error && !isLoading && (
+              <ErrorMessage
+                message={error}
+                onRetry={lastCriteria ? handleRetry : undefined}
+              />
+            )}
+
+            {!hasSearched && !isLoading && <EmptyState type="no-search" />}
+
+            {hasSearched && questions.length === 0 && !isLoading && !error && (
+              <EmptyState
+                type="no-results"
+                topic={lastCriteria?.topic}
+                difficulty={lastCriteria?.difficulty}
+              />
+            )}
+
+            {questions.length > 0 && !isLoading && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {questions.map((question, idx) => (
+                  <QuestionCard
+                    key={question.id ?? `question-${idx}`}
+                    question={question}
+                    topic={topic}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="border-t mt-16">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center text-sm text-muted-foreground">
+            <p>
+              Built with React, TypeScript, and Shadcn/ui • Data sourced from
+              LeetCode, Codeforces, CodeChef, and GeeksforGeeks
+            </p>
+          </div>
+        </div>
       </footer>
     </div>
   );
 }
+
+export default App;
