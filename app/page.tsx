@@ -335,8 +335,8 @@
 "use client";
 
 import { useState } from "react";
-import { Code, Github, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Code } from "lucide-react";
+// import { Button } from "@/components/ui/button";
 import { CodingQuestion, FilterCriteria } from "@/types";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { QuestionFilters } from "@/components/QuestionFilters";
@@ -414,13 +414,6 @@ function App() {
 
             <div className="flex items-center gap-3">
               <ThemeToggle />
-              <Button variant="outline" size="sm" className="hidden sm:flex">
-                <Star className="w-4 h-4 mr-2" />
-                Star on GitHub
-              </Button>
-              <Button variant="ghost" size="sm">
-                <Github className="w-4 h-4" />
-              </Button>
             </div>
           </div>
         </div>
