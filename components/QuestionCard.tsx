@@ -173,6 +173,8 @@ interface QuestionCardProps {
 }
 
 export function QuestionCard({ question, topic }: QuestionCardProps) {
+  console.log("question in QuestionCard", question);
+
   const getDifficultyColor = (difficulty?: string) => {
     switch (difficulty) {
       case "easy":
